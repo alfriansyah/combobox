@@ -9,7 +9,15 @@
 		}
 
 		function kabupaten($provId){
+			$kabupaten 	= "<option value='0' > Pilih </option>";
 
+			$this->db->order_by('name','asc');
+			$kab = $this->db->get_where('kabupaten',array('province_id'=>$provId));
+
+			foreach ($kab->result_array() as $data) {
+				$kabupaten .= "<option value='$data[id]'>$data[name]</option>";
+			}
+			return $kabupaten;
 		}
 
 
